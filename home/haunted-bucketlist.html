@@ -1,0 +1,68 @@
+---
+layout: default
+title: Haunted Places Bucketlist
+permalink: /haunted-bucketlist/
+---
+
+{{ "# Haunted Places Bucketlist
+This is my bucket list of haunted places that I want to visit.
+
+Click an icon to view details about that location.
+" | markdownify }}
+
+<div id="map" style="height: 400px;"></div>
+<!-- Leaflet CSS and JS here as before -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+  integrity="sha256-o9N1j7kG1KfRW3yx3wDq6XyJcNsq+0O0wv3fQfVvX7k=" crossorigin=""/>
+
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const map = L.map('map').setView([42.5195, -70.8967], 3);
+
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="http://stamen.com">Stamen Design</a>, ' + 
+       'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors',
+    }).addTo(map);
+
+    function showSection(id) {
+      document.querySelectorAll('.location-section').forEach(section => {
+        section.style.display = (section.id === id) ? 'block' : 'none';
+      });
+    }
+    
+    var MapIcon = L.Icon.extend({
+        options: {
+            iconSize:     [32, 32],
+            iconAnchor:   [16, 32],
+            popupAnchor:  [0, -32]
+        }
+    });
+
+    const markers = [
+      { coords: [42.5195, -70.8967], id: 'salem', name: 'Salem', icon: new MapIcon({iconUrl: '/assets/haunted-bucketlist/icons/salem.png'})},
+      { coords: [40.2756, -105.5486], id: 'stanley-hotel', name: 'Stanley Hotel' , icon: new MapIcon({iconUrl: '/assets/haunted-bucketlist/icons/stanley-hotel.png'})}
+    ];
+
+    markers.forEach(({ coords, id, name, icon }) => {
+      const marker = L.marker(coords, { icon }).addTo(map).bindPopup(name);
+      marker.on('click', () => showSection(id));
+    });
+
+    // Hide all sections initially
+    showSection(null);
+  });
+</script>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"
+  integrity="sha256-o9N1j7kG1KfRW3yx3wDq6XyJcNsq+0O0wv3fQfVvX7k=" crossorigin=""></script>
+
+<!-- Now include your sections wrapped in divs with IDs -->
+<div id="salem" class="location-section" style="display:none;">
+  {% capture salem_content %}{% include salem.md %}{% endcapture %}
+  {{ salem_content | markdownify }}
+</div>
+
+<div id="stanley-hotel" class="location-section" style="display:none;">
+  {% capture stanley_content %}{% include stanley-hotel.md %}{% endcapture %}
+  {{ stanley_content | markdownify }}
+</div>
