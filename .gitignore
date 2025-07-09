@@ -1,0 +1,17 @@
+# Jekyll build output
+_site/
+
+# Sass cache
+.sass-cache/
+
+# Jekyll metadata file
+.jekyll-metadata
+
+# Bundler config
+.bundle/
+vendor/
+
+# VS Code settings
+.vscode/
+
+Gemfile.lock

@@ -1,0 +1,100 @@
+/* Remove default link colors */
+a {
+  color: inherit;           /* Use text color of parent */
+  text-decoration: none;    /* Remove underline if you want */
+}
+
+/* Optional: Keep links looking clickable on hover */
+a:hover,
+a:focus {
+  text-decoration: underline;
+  color: #007acc;           /* Or any color you prefer */
+}
+
+/* Optional: style active page links */
+a.active {
+  font-weight: bold;
+  color: darkblue;          /* Your preferred highlight color */
+}
+
+
+body {
+  margin: 0;
+  font-family: "Courier New", Courier, monospace;
+  display: flex;
+}
+
+div[style*="display: flex"] {
+  /* Add a small gap between home link and toggle */
+  gap: 0.25em;
+  align-items: center;
+}
+
+/* Parent content class */ 
+.container {
+  display: flex;
+  width: 100%;
+  /* background-color: aquamarine; */
+}
+
+/* Parent sidebar class */ 
+.sidebar {
+  width: 25%;
+  /* background: palevioletred; */
+  padding: 1rem;
+  padding-top: 3.5em;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding-left: 0;
+}
+
+.sidebar button {
+  width: 100%;
+  background: none;
+  border: none;
+  font-weight: bold;
+  font-size: 1rem;
+  text-align: left;
+}
+
+.sidebar .hidden {
+  display: none;
+}
+
+.submenu {
+  padding-left: 1.5em;  /* Indent the whole submenu */
+  margin-top: 0.25em;
+  list-style-type: none; /* Remove default bullets if you want */
+}
+
+.submenu li {
+  margin: 0.3em 0;       /* Space between submenu items */
+}
+
+.submenu li a {
+  display: block;        /* Makes the whole line clickable */
+  padding-left: 0.5em;   /* Extra padding inside each link */
+}
+
+main {
+  padding: 2rem;
+  flex-grow: 1;
+}
+
+#toggleSubpages {
+  margin-left: 0;       /* Remove margin pushing it too far right */
+  padding: 0 0.25em;    /* Small horizontal padding to keep click area */
+  width: auto;          /* Avoid fixed width if any */
+  font-size: 1em;
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+/* Rotate arrow when submenu is open */
+#toggleSubpages.open {
+  transform: rotate(180deg);
+}

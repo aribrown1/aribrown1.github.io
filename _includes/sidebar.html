@@ -1,0 +1,12 @@
+<ul>
+  <li>
+    <div style="display: flex; align-items: center;">
+      <a href="/" id="homeLink" style="flex-grow: 1;">Home</a>
+      <button id="toggleSubpages" aria-label="Toggle Home submenu" style="background:none; border:none; cursor:pointer;">▼</button>
+    </div>
+    <ul id="subpages" class="submenu">
+      <li><a href="/exploring-washington/" class="{% if page.url contains '/exploring-washington/' %}active{% endif %}">Exploring Washington State</a></li>
+      <li><a href="/haunted-bucketlist/" class="{% if page.url contains '/haunted-bucketlist/' %}active{% endif %}">Haunted Places Bucketlist</a></li>
+    </ul>
+  </li>
+</ul>
